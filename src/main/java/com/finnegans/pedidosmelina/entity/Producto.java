@@ -73,5 +73,15 @@ public class Producto {
         this.precioBase = precioBase;
     }
 
-
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "nombre='" + nombre + '\'' +
+                ", impuesto=" + impuesto +
+                ", idProducto=" + idProducto +
+                ", descripcion='" + descripcion + '\'' +
+                ", cantidad=" + cantidad +
+                ", precioBase=" + precioBase +
+                '}';
+    }
 }
