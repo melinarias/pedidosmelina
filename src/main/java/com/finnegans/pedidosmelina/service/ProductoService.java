@@ -1,6 +1,7 @@
 package com.finnegans.pedidosmelina.service;
 
 import com.finnegans.pedidosmelina.entity.Producto;
+import org.springframework.stereotype.Service;
 
 public interface ProductoService {
 

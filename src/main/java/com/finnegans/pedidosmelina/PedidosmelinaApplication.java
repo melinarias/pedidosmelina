@@ -15,6 +15,8 @@ public class PedidosmelinaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PedidosmelinaApplication.class, args);
 
+
+		/*
 		Scanner teclado = new Scanner(System.in);
 
 		Producto producto1 = new Producto();
@@ -78,7 +80,7 @@ public class PedidosmelinaApplication {
 		producto1.setDescripcion(descripcion);
 
 		productoService.modificarProducto(idDeProducto, producto1);
-
+		*/
 
 	}
 
