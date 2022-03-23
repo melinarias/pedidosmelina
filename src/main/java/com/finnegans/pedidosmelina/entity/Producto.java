@@ -1,17 +1,26 @@
 package com.finnegans.pedidosmelina.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="productos")
 public class Producto {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id_producto")
+    private Integer idProducto;
 
     private String nombre;
 
     private Float impuesto;
 
-    private Integer idProducto;
-
     private String descripcion;
 
     private Integer cantidad;
 
+    @Column(name="precio_base")
     private Float precioBase;
 
     public Producto(){};
