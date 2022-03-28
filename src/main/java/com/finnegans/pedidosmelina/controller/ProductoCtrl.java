@@ -30,12 +30,17 @@ public class ProductoCtrl {
     public ProductoRepository productoRepository;
 
     @GetMapping("/listaDeProductos")
-    public String listAll(Model model) {
+    public List<Producto> listAll() {
         List<Producto> listaDeProductos = productoRepository.findAll();
-        model.addAttribute("listaDeProductos", listaDeProductos);
-
-        return "listaDeProducto";
+        return listaDeProductos;
     }
+
+    @PostMapping("/guardarProducto")
+    public Producto producto(@RequestBody Producto producto){
+        productoRepository.save(producto);
+        return producto;
+    }
+
 
 }
 

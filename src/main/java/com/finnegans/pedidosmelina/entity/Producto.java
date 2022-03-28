@@ -8,7 +8,7 @@ public class Producto {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_producto")
     private Integer idProducto;
 
@@ -20,7 +20,7 @@ public class Producto {
 
     private Integer cantidad;
 
-    @Column(name="precio_base")
+    @Column(name="precio")
     private Float precioBase;
 
     public Producto(){};
