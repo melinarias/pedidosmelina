@@ -8,27 +8,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
 @RequestMapping("/productos")
+@CrossOrigin()
 public class ProductoCtrl {
-
-    /*
-        @Autowired
-        ProductoService productoService;
-    */
-
-    /*
-    @GetMapping(value = "/cargarProducto")
-    public String cargarProducto(){
-        return "Producto: Coca Cola, Sabor cola, 2";
-    }
-    */
 
     @Autowired
     public ProductoRepository productoRepository;
 
+    @GetMapping("/obtenerProducto/{id}")
+    public Producto obtenerProducto(@PathVariable String id){
+        Producto producto = productoRepository.findById(Integer.parseInt(id)).get();
+        return producto;
+    }
+
+    @CrossOrigin()
     @GetMapping("/listaDeProductos")
     public List<Producto> listAll() {
         List<Producto> listaDeProductos = productoRepository.findAll();
@@ -36,11 +33,29 @@ public class ProductoCtrl {
     }
 
     @PostMapping("/guardarProducto")
-    public Producto producto(@RequestBody Producto producto){
+    public Producto guardarProdcuto(@RequestBody Producto producto){
         productoRepository.save(producto);
         return producto;
     }
 
+    @PutMapping("/modificarProducto/{id}")
+    public Producto modificarProducto(@PathVariable String id, @RequestBody Producto productoDelFormulario ){
+        Producto producto = obtenerProducto(id);
+        System.out.println(productoDelFormulario.getNombre());
+        producto.setNombre(productoDelFormulario.getNombre());
+        producto.setDescripcion(productoDelFormulario.getDescripcion());
+        producto.setImpuesto(productoDelFormulario.getImpuesto());
+        producto.setCantidad(productoDelFormulario.getCantidad());
+        producto.setPrecioBase(productoDelFormulario.getPrecioBase());
+        productoRepository.save(producto);
+        return producto;
+    }
+
+    @DeleteMapping("/eliminarProducto/{id}")
+    public String eliminarProducto(@PathVariable String id){
+        productoRepository.deleteById(Integer.parseInt(id));
+        return "Se elimino con exito";
+    }
 
 }
 
